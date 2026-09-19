@@ -1,0 +1,222 @@
+<!-- dashboard/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- Google tag (gtag.js) — same property as the main Carilume site -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q49VW0DDDE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-Q49VW0DDDE', {
+    page_title: 'Carilume Dashboard',
+    page_location: window.location.href,
+    send_page_view: true
+  });
+</script>
+<meta name="description" content="Your Carilume dashboard — track your career journey and roadmap."/>
+<meta name="theme-color" content="#1A6B5C"/>
+<title>Carilume — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ════════════ SETUP (first visit only) ════════════ -->
+<section id="onboarding" class="onboarding" hidden>
+  <div class="ob-card">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M18 4 L4 30 L32 30 Z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+          <line x1="11.5" y1="20" x2="24.5" y2="20" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="9" y1="24" x2="27" y2="24" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="14.5" y1="16" x2="21.5" y2="16" stroke="rgba(255,255,255,.40)" stroke-width="1.4" stroke-linecap="round"/>
+          <circle cx="18" cy="4" r="2.6" fill="#F5A623"/>
+        </svg>
+      </div>
+      <span class="logo-name">Carilume</span>
+    </div>
+
+    <h1 class="ob-title">Set up your dashboard</h1>
+    <p class="ob-sub">Choose your career path and weekly study time. We'll build your personalised roadmap and track your progress.</p>
+
+    <div class="ob-group">
+      <div class="ob-label">Your career path</div>
+      <div class="ob-grid" id="ob-careers" role="radiogroup" aria-label="Career path">
+        <button type="button" class="ob-option" data-career="uiux" role="radio" aria-checked="false"><span class="ob-option-icon" aria-hidden="true">🎨</span>UI/UX Design</button>
+        <button type="button" class="ob-option" data-career="webdev" role="radio" aria-checked="false"><span class="ob-option-icon" aria-hidden="true">💻</span>Web Development</button>
+        <button type="button" class="ob-option" data-career="data" role="radio" aria-checked="false"><span class="ob-option-icon" aria-hidden="true">📊</span>Data Analysis</button>
+        <button type="button" class="ob-option" data-career="digmkt" role="radio" aria-checked="false"><span class="ob-option-icon" aria-hidden="true">📱</span>Digital Marketing</button>
+        <button type="button" class="ob-option" data-career="cyber" role="radio" aria-checked="false"><span class="ob-option-icon" aria-hidden="true">🔒</span>Cybersecurity</button>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Hours you can commit each week</div>
+      <div class="ob-grid" id="ob-hours" role="radiogroup" aria-label="Hours per week">
+        <button type="button" class="ob-option" data-hours="0" role="radio" aria-checked="false">Under 5 hours</button>
+        <button type="button" class="ob-option" data-hours="1" role="radio" aria-checked="false">5 to 10 hours</button>
+        <button type="button" class="ob-option" data-hours="2" role="radio" aria-checked="false">10 to 20 hours</button>
+        <button type="button" class="ob-option" data-hours="3" role="radio" aria-checked="false">20+ hours</button>
+      </div>
+    </div>
+
+    <button type="button" id="ob-start" class="btn btn-brand btn-block" disabled>Start my dashboard</button>
+    <p class="ob-note">Not sure which path fits you? <a href="https://carilume.ng" target="_blank" rel="noopener">Take the 5-minute quiz</a></p>
+  </div>
+</section>
+
+<!-- ════════════ APP ════════════ -->
+<div id="app" class="app" hidden>
+
+  <!-- Sidebar (becomes a bottom nav on mobile) -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M18 4 L4 30 L32 30 Z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+          <line x1="11.5" y1="20" x2="24.5" y2="20" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="9" y1="24" x2="27" y2="24" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="14.5" y1="16" x2="21.5" y2="16" stroke="rgba(255,255,255,.40)" stroke-width="1.4" stroke-linecap="round"/>
+          <circle cx="18" cy="4" r="2.6" fill="#F5A623"/>
+        </svg>
+      </div>
+      <span class="logo-name">Carilume</span>
+    </div>
+
+    <nav class="sb-nav" aria-label="Dashboard">
+      <button type="button" class="nav-item active" data-view="overview">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Overview
+      </button>
+      <button type="button" class="nav-item" data-view="roadmap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h6a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h6"/></svg>
+        My roadmap
+      </button>
+    </nav>
+
+    <div class="sb-foot">
+      <a class="sb-link" href="https://whatsapp.com/channel/0029Vb80oFI6mYPSSKmWOl0V" target="_blank" rel="noopener" data-track="community">Join the community</a>
+      <a class="sb-link" href="https://carilume.ng" target="_blank" rel="noopener" data-track="retake_quiz">Retake the quiz</a>
+      <button type="button" class="sb-link" id="reset-btn">Change career</button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <div class="mobile-top">
+      <div class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <path d="M18 4 L4 30 L32 30 Z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+            <line x1="11.5" y1="20" x2="24.5" y2="20" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="9" y1="24" x2="27" y2="24" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="14.5" y1="16" x2="21.5" y2="16" stroke="rgba(255,255,255,.40)" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="18" cy="4" r="2.6" fill="#F5A623"/>
+          </svg>
+        </div>
+        <span class="logo-name">Carilume</span>
+      </div>
+      <button type="button" class="btn btn-outline" id="reset-btn-mobile" style="margin-left:auto;padding:6px 12px;font-size:12px">Change career</button>
+    </div>
+
+    <div class="content">
+
+      <!-- ── VIEW: OVERVIEW ── -->
+      <section id="view-overview">
+        <div class="page-head">
+          <h1 class="page-title">Your dashboard</h1>
+          <p class="page-sub">Your career journey at a glance.</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-eyebrow">Your career path</div>
+          <div class="hero-name" id="hero-name"></div>
+          <p class="hero-apt" id="hero-apt"></p>
+          <div class="hero-tags">
+            <span class="tag tag-dark" id="hero-timeline-tag"></span>
+            <span class="tag tag-gold" id="hero-hours-tag"></span>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Overall progress</div>
+            <div class="stat-value" id="stat-progress">0%</div>
+            <div class="progress-bar"><div class="progress-fill" id="stat-bar"></div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Current phase</div>
+            <div class="stat-value" id="stat-phase"></div>
+            <div class="stat-sub" id="stat-phase-sub"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Milestones</div>
+            <div class="stat-value" id="stat-milestones"></div>
+            <div class="stat-sub">completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Your timeline</div>
+            <div class="stat-value" id="stat-timeline"></div>
+            <div class="stat-sub" id="stat-timeline-sub"></div>
+          </div>
+        </div>
+
+        <div class="complete-banner" id="complete-banner" hidden>
+          <h3>You completed your roadmap 🎉</h3>
+          <p>Every milestone is done. You are a working professional now. Keep going and share Carilume with someone who needs clarity.</p>
+        </div>
+
+        <div class="card" id="next-card">
+          <div class="card-label">Your next milestone</div>
+          <div class="next-head">
+            <div class="next-title" id="next-title"></div>
+            <span class="tag tag-green" id="next-phase-tag"></span>
+          </div>
+          <p class="next-focus" id="next-focus"></p>
+          <div id="next-milestone"></div>
+          <div class="next-actions">
+            <button type="button" class="btn btn-brand" id="go-roadmap-btn">View full roadmap</button>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin-top:8px">Quick links</div>
+        <div class="links-grid">
+          <a class="link-card" href="https://whatsapp.com/channel/0029Vb80oFI6mYPSSKmWOl0V" target="_blank" rel="noopener" data-track="community">
+            <div class="link-icon" aria-hidden="true">💬</div>
+            <div><div class="link-title">Join the community</div><div class="link-desc">Weekly career tips and updates on our WhatsApp Channel.</div></div>
+          </a>
+          <a class="link-card" href="https://wa.me/2348126048848" target="_blank" rel="noopener" data-track="chat_with_us">
+            <div class="link-icon" aria-hidden="true">🙋</div>
+            <div><div class="link-title">Chat with us</div><div class="link-desc">Questions about your path? Message the Carilume team.</div></div>
+          </a>
+          <a class="link-card" href="https://carilume.ng" target="_blank" rel="noopener" data-track="retake_quiz">
+            <div class="link-icon" aria-hidden="true">🔄</div>
+            <div><div class="link-title">Retake the quiz</div><div class="link-desc">Not feeling this match? Find a better fit in 5 minutes.</div></div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── VIEW: ROADMAP ── -->
+      <section id="view-roadmap" hidden>
+        <div class="page-head">
+          <h1 class="page-title" id="rm-title"></h1>
+          <p class="page-sub" id="rm-sub"></p>
+        </div>
+        <div class="rm-pill" id="rm-pill"></div>
+        <div class="phases-timeline" id="rm-phases"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
